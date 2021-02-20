@@ -1,15 +1,10 @@
 const path = require('path');
 module.exports = {
   mode: 'development',
-  entry: [ 
-    './src/TouchRegion.ts', 
-    './src/TouchState.ts', 
-    './src/TouchSurface.ts',
-    './src/TouchGamepad.ts'
-  ],
+  entry: './src/index.ts',
   output: {
     filename: 'touch-gamepad.js',
-    path: path.resolve(__dirname, 'dist/umd'),
+    path: path.resolve(__dirname, 'dist'),
     library: 'touchGamepad',
     libraryTarget: 'umd'
   },
