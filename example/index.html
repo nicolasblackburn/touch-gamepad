@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="dist/umd/touch-gamepad.js"></script>
+  <script>
+    const gamepad = new touchGamepad.TouchGamepad();
+    gamepad.on('axismove', event => console.log(event));
+    gamepad.on('buttondown', event => console.log(event));
+    gamepad.on('buttonup', event => console.log(event));
+  </script>
+</body>
+</html>
