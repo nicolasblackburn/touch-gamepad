@@ -123,26 +123,26 @@ export class TouchGamepad {
         this.buttons[0].pressed = false;
         this.emitter.emit('buttonup', {type: 'buttonup', index: 0, ...this.buttons[0]});
       }
-      this.emitter.emit('axismove', {type: 'axismove', x: this.axes[0], y: this.axes[1], indexes: [0, 1]});
+      this.emitter.emit('axispressed', {type: 'axispressed', x: this.axes[0], y: this.axes[1], indexes: [0, 1]});
     });
     
     this.touchRegion.on('touchend', () => {
       this.axes[0] = 0;
       this.axes[1] = 0;
-      this.emitter.emit('axismove', {type: 'axismove', x: this.axes[0], y: this.axes[1], indexes: [0, 1]});
+      this.emitter.emit('axisreleased', {type: 'axisreleased', x: this.axes[0], y: this.axes[1], indexes: [0, 1]});
     });
 
     this.touchRegion.on('touchendoutside', () => {
       this.axes[0] = 0;
       this.axes[1] = 0;
-      this.emitter.emit('axismove', {type: 'axismove', x: this.axes[0], y: this.axes[1], indexes: [0, 1]});
+      this.emitter.emit('axisreleased', {type: 'axisreleased', x: this.axes[0], y: this.axes[1], indexes: [0, 1]});
     });
 
     this.touchRegion.on('tappressed', () => {
       if (!this.config.dualHands) {
         this.buttons[0].value = 1;
         this.buttons[0].pressed = true;
-        this.emitter.emit('buttondown', {type: 'buttondown', index: 0, ...this.buttons[0]});
+        this.emitter.emit('buttonpressed', {type: 'buttonpressed', index: 0, ...this.buttons[0]});
       }
     });
 
@@ -150,7 +150,7 @@ export class TouchGamepad {
       if (!this.config.dualHands) {
         this.buttons[0].value = 0;
         this.buttons[0].pressed = false;
-        this.emitter.emit('buttonup', {type: 'buttonup', index: 0, ...this.buttons[0]});
+        this.emitter.emit('buttonreleased', {type: 'buttonreleased', index: 0, ...this.buttons[0]});
       }
     });
 
@@ -158,7 +158,7 @@ export class TouchGamepad {
       if (this.config.dualHands) {
         this.buttons[0].value = 1;
         this.buttons[0].pressed = true;
-        this.emitter.emit('buttondown', {type: 'buttondown', index: 0, ...this.buttons[0]});
+        this.emitter.emit('buttonpressed', {type: 'buttonpressed', index: 0, ...this.buttons[0]});
       }
     });
 
@@ -166,7 +166,7 @@ export class TouchGamepad {
       if (this.config.dualHands) {
         this.buttons[0].value = 0;
         this.buttons[0].pressed = false;
-        this.emitter.emit('buttonup', {type: 'buttonup', index: 0, ...this.buttons[0]});
+        this.emitter.emit('buttonreleased', {type: 'buttonreleased', index: 0, ...this.buttons[0]});
       }
     });
   }
