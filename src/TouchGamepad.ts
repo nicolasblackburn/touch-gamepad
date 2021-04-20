@@ -48,6 +48,20 @@ function discreteAngle(samplesCount: number, {x, y}: {x: number, y: number}) {
   return ((Math.atan2(y, x) / PI_SQUARED * samplesCount + samplesCount + 1 / 2) % samplesCount | 0);
 }
 
+interface AxisEvent {
+  type: "axispressed" | "axisreleased";
+  x: number;
+  y: number;
+  indexes: number[];
+}
+
+interface ButtonEvent {
+  type: "buttonpressed" | "buttonreleased";
+  value: number;
+  pressed: boolean;
+  index: number;
+}
+
 export class TouchGamepad {
   readonly axes: number[] = [0, 0];
   readonly buttons: {value: number, pressed: boolean}[] = [
@@ -171,11 +185,11 @@ export class TouchGamepad {
     });
   }
 
-  public on(event, fn, priority?) {
+  public on(event: string, fn: (event: AxisEvent | ButtonEvent) => void, priority?: number) {
     this.emitter.on(event, fn, priority);
   }
 
-  public off(event, fn) {
+  public off(event: string, fn: (event: AxisEvent | ButtonEvent) => void) {
     this.emitter.off(event, fn);
   }
 }
