@@ -9,7 +9,7 @@
     "build": "npm run clean && npm run build:types && npm run build:umd && npm run build:umd:min",
     "build:esm": "tsc --module es2015 --target es5 --outDir dist/esm",
     "build:types": "tsc --declaration --moduleResolution node --target esnext --emitDeclarationOnly --outFile dist/touch-gamepad.d.ts",
-    "build:umd": "webpack",
+    "build:umd": "NODE_OPTIONS=--openssl-legacy-provider webpack",
     "build:umd:min": "cd dist && uglifyjs touch-gamepad.js --compress --mangle --source-map --comments -o touch-gamepad.min.js",
     "example:clean": "shx rm -rf example/dist",
     "example:install": "shx cp -r dist/ example/dist",
